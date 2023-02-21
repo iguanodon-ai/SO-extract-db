@@ -36,3 +36,11 @@ yarn install
 `node script.js`
 
 Resulting JSON will be written in `./entries.json`
+
+## Clean-up script
+
+`python dedup_json.py`
+
+Resulting JSON will be written in `./entries_clean.json`
+
+NB: you might need to install the dependencies (`pip install -r requirements.txt`)
