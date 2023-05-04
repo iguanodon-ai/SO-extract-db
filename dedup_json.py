@@ -30,7 +30,7 @@ def clean_dates(d):
     for i, v in enumerate(d):
         for i2, entry in enumerate(v["entries"]):
             dates = re.findall("\d{4}", entry["year"])
-            d[i]["entries"][i2]["year"] = dates
+            d[i]["entries"][i2]["year"] = [int(date) for date in dates]
     return d
         
 
