@@ -1,3 +1,5 @@
+**Documentation about data-structure is available in [data-structure.md](data-structure.md)**
+
 # Usage
 
 ## Prepare database dump
