@@ -40,7 +40,7 @@ One key by lemma, a nested dictionary containing a list of entries for that lemm
 ### `nature` (POS-tag)
 `drog` here above has two entries. They are both referring to a noun (`'nature': 'subst.'`, i.e. substantive). A list of possible natures is pasted below.
 
-### `sense` and `senseSecondary`: senses
+### `sense` and `senseSecondary` (senses)
 The first one has a sense (`sense`) as well as a clarification of that sense (`senseSecondary`) -- in this case the sense is "a narcotic agent", and the clarification means "specific, used for purposes other than medicinal"
 
 ### `year` (year)
