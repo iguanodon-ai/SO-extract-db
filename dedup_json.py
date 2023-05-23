@@ -32,13 +32,22 @@ def clean_dates(d):
             dates = re.findall("\d{4}", entry["year"])
             d[i]["entries"][i2]["year"] = [int(date) for date in dates]
     return d
-        
+
+def list_to_dict(d):
+    d4 = {}
+    for i in d:
+        w = i["key"]
+        i.pop("key")
+        d4[w] = i
+    return d4
 
 with open("entries.json") as f:
     d = json.load(f)
     
 d2 = dedup(d)
 d3 = clean_dates(d2)
+d4 = list_to_dict(d3)
+
 with open("entries_clean.json", "w") as f:
-    json.dump(d3, f, indent=4, ensure_ascii=False)
+    json.dump(d4, f, indent=4, ensure_ascii=False)
 print("Dedup JSON saved at entries_clean.json")
