@@ -59,7 +59,7 @@ A list of sentences/text using the word. This list can be empty, or contain one 
 ## Remarks
 
 Possible natures, their translation into English, and their meta [UD POS-tag](https://universaldependencies.org/u/pos/all.html) where available:
-```json
+```
 {
  'adj.' : ["adjective", "ADJ"],
  'adj. komp.': ["comparative adjective", "ADJ"],
