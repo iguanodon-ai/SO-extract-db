@@ -46,8 +46,8 @@ The first one has a sense (`sense`) as well as a clarification of that sense (`s
 ### `year` (year)
 They both share the same year. **NB**: 
 
-    1. This is a list of ints, there might be several dates
-    2. When the year ends in `00`, such as `1800`, this means "19th-Century" or "the years that started in 1800"
+1. This is a list of ints, there might be several dates
+  2. When the year ends in `00`, such as `1800`, this means "19th-Century" or "the years that started in 1800"
 
 ###  `etymology` (etymology)
 The etymology of the word.
