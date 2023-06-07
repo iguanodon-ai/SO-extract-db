@@ -46,8 +46,8 @@ with open("entries.json") as f:
     
 d2 = dedup(d)
 d3 = clean_dates(d2)
-d4 = list_to_dict(d3)
+#d4 = list_to_dict(d3)
 
 with open("entries_clean.json", "w") as f:
-    json.dump(d4, f, indent=4, ensure_ascii=False)
+    json.dump(d3, f, indent=4, ensure_ascii=False)
 print("Dedup JSON saved at entries_clean.json")
