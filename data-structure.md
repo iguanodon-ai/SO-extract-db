@@ -75,6 +75,10 @@ The etymology of the word.
 A list of sentences/text using the word. This list can be empty, or contain one or more entries.
 
 
+## Bib
+
+Allén, Sture (1981): The lemma-lexeme model of the Swedish Lexical Database. In: Ralph, Bo (ed.). Modersmålet i fäderneslandet. Ett urval uppsatser under fyrtio år av Sture Allén. Meijerbergs arkiv för svensk ordforskning 25. Göteborg 1999. (https://gupea.ub.gu.se/bitstream/handle/2077/53653/gupea_2077_53653_1.pdf?sequence=1&isAllowed=y)
+
 ## Remarks
 
 Possible natures, their translation into English, and their meta [UD POS-tag](https://universaldependencies.org/u/pos/all.html) where available:
