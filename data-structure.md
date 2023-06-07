@@ -82,7 +82,8 @@ Allén, Sture (1981): The lemma-lexeme model of the Swedish Lexical Database. In
 ## Remarks
 
 Possible natures, their translation into English, and their meta [UD POS-tag](https://universaldependencies.org/u/pos/all.html) where available:
-```
+
+```python
 {
  'adj.' : ["adjective", "ADJ"],
  'adj. komp.': ["comparative adjective", "ADJ"],
