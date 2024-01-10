@@ -58,10 +58,10 @@ The list contains 68671 dictionaries, one per dictionary entry. Each dictionary 
 ## Key
 
 ### `nature` (POS-tag)
-`drog` here above has two entries. They are both referring to a noun (`'nature': 'subst.'`, i.e. substantive). A list of possible natures is pasted below.
+They are both referring to a noun (`'nature': 'subst.'`, i.e. substantive). A list of possible natures is pasted below.
 
 ### `gloss` and `sub_gloss`
-The first one has a sense definition (`gloss`) as well as a clarification of that sense definition (`sub_gloss`).
+Sense definition (`gloss`), clarification of that sense definition (`sub_gloss`).
 
 ### `year` (year)
 Time data available.
