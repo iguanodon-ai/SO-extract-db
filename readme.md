@@ -2,42 +2,23 @@
 
 # Usage
 
-## Prepare database dump
+## If you have a node environment
 
-Dump can be put in `./dbfiles/<filename>.sql`. Make sure the SQL starts with `create database dictionary;`.
-You may want to modify `docker-compose.yml` volumes block to reflect your dump filename
+`npm install` or `yarn install`
 
-## Database setup
+`npm run build` or `yarn build`
 
-Run the database with docker :
+Create an `.env` file containing DB connection parameters (you can copy `env.sample` and edit the values)
 
-```
-docker compose up
-```
+`npm run start > entries.json` or `yarn start > entries.json`
 
-Depending on the dump size, this may take some time before the container is ready
+## With Docker
 
-## JS dependencies
+`docker build -t so-db-extract:latest`
 
-You will need to have a working installation of nodejs (latest LTS preferably).
+Create an `.env` file containing DB connection parameters (you can copy `env.sample` and edit the values)
 
-You can install deps with `npm` or `yarn`.
-
-```
-npm install
-```
-
-OR
-
-```
-yarn install
-```
-
-## Run the script
-
-`node script.js`
-
-Resulting JSON will be written in `./entries.json`
+`docker run --env-file <your-env-file> so-db-extract:latest > entries.json`
 
 ## Clean-up script
 
