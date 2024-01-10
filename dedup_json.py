@@ -46,7 +46,7 @@ with open("entries.json") as f:
     data = json.load(f)
     
 y = [rename_keys_dict(dic, key_mapping) for dic in data]
-with open("entries_clean.json", "w") as f:
 
+with open("entries_clean.json", "w") as f:
     json.dump(y, f, indent=4, ensure_ascii=False)
 print("Dedup JSON saved at entries_clean.json")
