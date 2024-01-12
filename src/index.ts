@@ -26,6 +26,7 @@ async function parseEntries() {
     .innerJoin("etymologier as e", "e.x_nr", "b.x_nr")
     .leftJoin("syntex as sy", "b.kc_nr", "sy.kc_nr")
     .where("l.wtype", "=", "lemma")
+    .where("l.lm_sabob", "!=", "9")
     // .where("l.ortografi", "in", ["svindel", "fuling", "bot"])
     .groupBy("b.kc_nr")
     .orderBy(["sl.s_nr asc", "b.x_nr asc", "b.kcorder asc"])
