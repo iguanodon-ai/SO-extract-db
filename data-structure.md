@@ -4,72 +4,71 @@ This is the SO2021 dictionary stored in JSON.
 
 Below information is using python, but json is json. 
 
-```python
->>> import json
->>> with open("entries_clean.json") as f:
->>>     l = json.load(f)
->>> print(len(l))
-41597
-```
-
 This is a list, as SO follows the lemma-lexeme model (Allén 1981) which means we can have several different entries for a specific lemma. You can inspect this by looking up the word `bot`, for example.
 
-The list contains 51597 dictionaries, one per dictionary entry. Each dictionary entry has two keys: `entries` and `key`. The `key` is a string, the lemma at hand, while `entries` represent different entries for that specific key.
+The list contains 68671 dictionaries, one per dictionary entry. Each dictionary entry has several keys: `definitions` listing entries for that headword, `key` a unique ID (cf above), `nature` for the POS-tag, `word` for the headword.
 
- A code excerpt is worth a thousand words:
+ Below are two examples: [fuling](https://svenska.se/so/?sok=fuling&pz=1) has one main entry and two sub-entry, one of them has an example sentence. [svindel](https://svenska.se/so/?sok=svindel&pz=1) has two main entries and one of those has a sub-entry. There is an example for that main sense, and another example for its sub-sense. 
 
 
 ```python
->>> l[6465]
-    {
-        "entries": [
-            {
-                "nature": "subst.",
-                "sense": "narkotiskt medel",
-                "senseSecondary": "särsk. när det används i annat syfte än medicinskt",
-                "year": [
-                    1721
-                ],
-                "etymology": "av fra. *drogue =; ev. av lågty. *droge- 'torr' i *droge-fate 'torra fat' (*droge- har felaktigt uppfattats som innehållet i faten)",
-                "examples": [
-                    "tunga droger",
-                    "det är förbjudet att använda droger för att höja prestationsförmågan inom idrotten",
-                    "hasch, morfin och andra droger"
-                ]
-            },
-            {
-                "nature": "subst.",
-                "sense": "",
-                "senseSecondary": "",
-                "year": [
-                    1721
-                ],
-                "etymology": "av fra. *drogue =; ev. av lågty. *droge- 'torr' i *droge-fate 'torra fat' (*droge- har felaktigt uppfattats som innehållet i faten)",
-                "examples": [
-                    "på sjukhuset behandlades hon med drogerna haloperidol och triftazin"
-                ]
-            }
-        ],
-        "key": "drog"
-    }
+{'definitions': [{'examples': [],
+                  'gloss': 'person (eller djur) med föga tilltalande yttre',
+                  'sub_entries': [{'examples': [],
+                                   'gloss': 'ofta bildligt om lömsk el. elak '
+                                            'person',
+                                   'sub_entries': [],
+                                   'sub_gloss': '',
+                                   'year': '1831'},
+                                  {'examples': ['din lille fuling, vad har du '
+                                                'nu gjort?'],
+                                   'gloss': 'äv. skämts. el. smeksamt',
+                                   'sub_entries': [],
+                                   'sub_gloss': '',
+                                   'year': '1831'}],
+                  'sub_gloss': '',
+                  'year': '1831'}],
+ 'key': 53284,
+ 'nature': 'subst.',
+ 'word': 'fuling'}
+
+
+{'definitions': [{'examples': ['hon fick svindel uppe i tornet'],
+                  'gloss': '+yrsel som uppkommer vid vistelse på höga höjder',
+                  'sub_entries': [{'examples': ['han kände svindel vid tanken '
+                                                'på hur mycket pengar han hade '
+                                                'ansvar för'],
+                                   'gloss': 'äv. om likn. känsla som uppstått '
+                                            'av annan orsak',
+                                   'sub_entries': [],
+                                   'sub_gloss': '',
+                                   'year': '1668'}],
+                  'sub_gloss': '',
+                  'year': '1668'},
+                 {'examples': [],
+                  'gloss': '(ekonomiskt) bedrägeri',
+                  'sub_entries': [],
+                  'sub_gloss': 'i större skala',
+                  'year': '1879'}],
+ 'key': 145357,
+ 'nature': 'subst.',
+ 'word': 'svindel'}
+
 ```
 ## Key
 
 ### `nature` (POS-tag)
-`drog` here above has two entries. They are both referring to a noun (`'nature': 'subst.'`, i.e. substantive). A list of possible natures is pasted below.
+They are both referring to a noun (`'nature': 'subst.'`, i.e. substantive). A list of possible natures is pasted below.
 
-### `sense` and `senseSecondary` (senses)
-The first one has a sense (`sense`) as well as a clarification of that sense (`senseSecondary`) -- in this case the sense is "a narcotic agent", and the clarification means "specific, used for purposes other than medicinal"
+### `gloss` and `sub_gloss`
+Sense definition (`gloss`), clarification of that sense definition (`sub_gloss`).
 
 ### `year` (year)
-They both share the same year. 
+Time data available.
 
 **NB**: 
-1. This is a list of ints, there might be several dates
+1. This is an str
 2. When the year ends in `00`, such as `1800`, this means "19th-Century" or "the years that started in 1800"
-
-###  `etymology` (etymology)
-The etymology of the word.
 
 ###  `examples` (examples)
 A list of sentences/text using the word. This list can be empty, or contain one or more entries.

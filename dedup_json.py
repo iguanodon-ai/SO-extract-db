@@ -1,53 +1,52 @@
 import json
 from pprint import pprint
-import sys
-from tqdm import tqdm
-import re
 
-
-def try_set(dic):
-    #pprint(dic)
+def rename_keys_dict(dictionary, key_map):
+    """
+    Recursive function to rename dictionary keys based on a key_map object.
+    
+    Args:
+        dictionary (dict): The dictionary to rename keys.
+        key_map (dict): The key_map object that maps old keys to new keys.
+        
+    Returns:
+        dict: The dictionary with renamed keys.
+    """
+    renamed_dict = {}
     try:
-        dic["examples"] =  list(set(dic["examples"]))
-        return dic
+        for key, value in dictionary.items():
+            #print(key)
+            if key in key_map:
+                new_key = key_map[key]
+                #print(key, new_key)
+            else:
+                new_key = key
+            if isinstance(value, list):
+                new_l = []
+                for i in value:
+                    i = rename_keys_dict(i, key_map)
+                    new_l.append(i)
+                value = new_l
+                
+
+                renamed_dict[new_key] = value
+            else:
+                renamed_dict[new_key] = value
     except:
-        return dic
-        
+        return dictionary
+    return renamed_dict
 
-def dedup(d):
-    d2 = []
-    for i in tqdm(d):
-        dico = {"entries": []}
-        dico["key"] = i["key"]
-        
-        for x in i["entries"]:
-            dico["entries"].append(try_set(x))
-        d2.append(dico)
-            
-    return d2
-
-def clean_dates(d):
-    for i, v in enumerate(d):
-        for i2, entry in enumerate(v["entries"]):
-            dates = re.findall("\d{4}", entry["year"])
-            d[i]["entries"][i2]["year"] = [int(date) for date in dates]
-    return d
-
-def list_to_dict(d):
-    d4 = {}
-    for i in d:
-        w = i["key"]
-        i.pop("key")
-        d4[w] = i
-    return d4
+key_mapping = {
+    "description" : "gloss",
+    "subDefinitions" : "sub_entries",
+    "subtitle": "sub_gloss"
+}
 
 with open("entries.json") as f:
-    d = json.load(f)
+    data = json.load(f)
     
-d2 = dedup(d)
-d3 = clean_dates(d2)
-#d4 = list_to_dict(d3)
+y = [rename_keys_dict(dic, key_mapping) for dic in data]
 
 with open("entries_clean.json", "w") as f:
-    json.dump(d3, f, indent=4, ensure_ascii=False)
+    json.dump(y, f, indent=4, ensure_ascii=False)
 print("Dedup JSON saved at entries_clean.json")

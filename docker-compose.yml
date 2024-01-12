@@ -1,15 +1,24 @@
 version: "3"
 
 services:
+  extractor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=${DB_HOST:-localhost}
+    depends_on:
+      - database
+
   database:
-    container_name: db
     image: mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_DATABASE=${DB_NAME:-dictionary}
     ports:
-      - 3306:3306
+      - ${DB_PORT:-3306}:3306
     volumes:
-      - ./dbfiles/so2021.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./dbfiles/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db:/var/lib/mysql
 
 volumes:

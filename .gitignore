@@ -1,4 +1,7 @@
 .vscode
+.env
 node_modules
+dist
 dbfiles/*.sql
-.ipynb_checkpoints
+entries.json
+entries-formatted.json
