@@ -5,3 +5,4 @@ dist
 dbfiles/*.sql
 entries.json
 entries-formatted.json
+entries_sabob.json
