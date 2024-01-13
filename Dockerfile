@@ -1,7 +1,7 @@
 FROM node:20
 
 ENV DB_HOST=localhost
-ENV DB_PORT=3308
+ENV DB_PORT=3306
 ENV DB_USER=root
 ENV DB_PASSWORD=secret
 ENV DB_NAME=dictionary
