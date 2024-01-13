@@ -34,6 +34,7 @@ export interface LemmaTable {
   wtype: string;
   origin: string;
   ortografi: string;
+  lm_sabob: number;
 }
 
 export interface BetydelserTable {

@@ -1,0 +1,5 @@
+DB_HOST=172.26.234.192
+DB_PORT=3306
+DB_NAME=dictionary
+DB_USER=root
+DB_PASSWORD=secret
