@@ -33,3 +33,11 @@ You might need to clean the first lines of the json.
 Resulting JSON will be written in `./entries_clean_nodraft.json`
 
 NB: you might need to install the dependencies (`pip install -r requirements.txt`)
+
+
+## License and contact
+
+<a href="https://iguanodon.ai"><img src="./img/iguanodon.ai.png" width="125" height="125" align="right" /></a>
+
+This code was written by Simon Hengchen ([https://iguanodon.ai](https://iguanodon.ai)) upon the request of the Change is Key! team ([Change is Key!](https://changeiskey.org/)). The code is made available to the public [under the permissive CC BY-SA 4.0 license](http://creativecommons.org/licenses/by-sa/4.0/). If you use the data that running this script provides, use the following text snippet in the acknowledgments section of your paper:
+> This work has been made possible by code created by `iguanodon.ai`.
