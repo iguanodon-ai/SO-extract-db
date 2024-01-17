@@ -42,11 +42,18 @@ key_mapping = {
     "subtitle": "sub_gloss"
 }
 
-with open("entries.json") as f:
-    data = json.load(f)
-    
-y = [rename_keys_dict(dic, key_mapping) for dic in data]
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) < 2:
+        print("Usage: python dedup_json.py <json_file>")
+        sys.exit(1)
+    json_file = sys.argv[1]
+    with open("json_file") as f:
 
-with open("entries_clean.json", "w") as f:
-    json.dump(y, f, indent=4, ensure_ascii=False)
-print("Dedup JSON saved at entries_clean.json")
+        data = json.load(f)
+        
+    y = [rename_keys_dict(dic, key_mapping) for dic in data]
+
+    with open("entries_clean_nodraft.json", "w") as f:
+        json.dump(y, f, indent=4, ensure_ascii=False)
+    print("Dedup JSON saved at entries_clean_nodraft.json")
