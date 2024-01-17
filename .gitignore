@@ -4,5 +4,7 @@ node_modules
 dist
 dbfiles/*.sql
 entries.json
+entries_clean_nodraft.json
 entries-formatted.json
-entries_sabob.json
+env/
+entries.zip
