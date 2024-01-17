@@ -28,7 +28,7 @@ You might need to clean the first lines of the json.
 
 ## Clean-up script
 
-`python dedup_json.py`
+`python dedup_json.py <path_to_json>`
 
 Resulting JSON will be written in `./entries_clean_nodraft.json`
 
@@ -41,3 +41,5 @@ NB: you might need to install the dependencies (`pip install -r requirements.txt
 
 This code was written by Simon Hengchen ([https://iguanodon.ai](https://iguanodon.ai)) upon the request of the Change is Key! team ([Change is Key!](https://changeiskey.org/)). The code is made available to the public [under the permissive CC BY-SA 4.0 license](http://creativecommons.org/licenses/by-sa/4.0/). If you use the data that running this script provides, use the following text snippet in the acknowledgments section of your paper:
 > This work has been made possible by code created by `iguanodon.ai`.
+
+ <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
