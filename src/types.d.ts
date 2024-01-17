@@ -12,6 +12,7 @@ type Entry = {
   key: number; // ort_snr
   word: string; // ortografie
   nature: string;
+  internal_SO_info: number;
   definitions: Definition[];
 };
 

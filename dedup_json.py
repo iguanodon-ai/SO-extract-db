@@ -48,8 +48,7 @@ if __name__ == "__main__":
         print("Usage: python dedup_json.py <json_file>")
         sys.exit(1)
     json_file = sys.argv[1]
-    with open("json_file") as f:
-
+    with open(json_file) as f:
         data = json.load(f)
         
     y = [rename_keys_dict(dic, key_mapping) for dic in data]
