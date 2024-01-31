@@ -1,4 +1,7 @@
 **Documentation about data-structure is available in [data-structure.md](data-structure.md)**
+# Disclaimer
+
+This code is the responsibility of its authors. This is not an official project of the Swedish Academy.
 
 # Usage
 
@@ -35,7 +38,7 @@ Resulting JSON will be written in `./entries_clean_nodraft.json`
 NB: you might need to install the dependencies (`pip install -r requirements.txt`)
 
 
-## License and contact
+# License and contact
 
 <a href="https://iguanodon.ai"><img src="./img/iguanodon.ai.png" width="125" height="125" align="right" /></a>
 
