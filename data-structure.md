@@ -2,57 +2,74 @@
 
 This is the SO2021 dictionary stored in JSON. 
 
-Below information is using python, but json is json. 
+This is a list of dictionaries. Indeed, SO can have different different entries for the same surface form, so we can't use the lemma/headword as a key. We differentiate headwords with a key called `key`, an integer. You can inspect this by looking up the word _bot_: 
+- there is a _bot_ (key == 1940) that means "straff som ut­går i pengar",
+- a _bot_ (key == 37412) with two senses ("(religiös) handling varigenom ngn anses bli fri från skuld" + "medel för att avhjälpa brist eller felaktighet"),
+- a _bot_ (key == 217078) from 2006 with only one sense: "datorprogram som simulerar mänskligt beteende"
 
-This is a list, as SO follows the lemma-lexeme model (Allén 1981) which means we can have several different entries for a specific lemma. You can inspect this by looking up the word `bot`, for example.
 
 The list contains 68671 dictionaries, one per dictionary entry. Each dictionary entry has several keys: `definitions` listing entries for that headword, `key` a unique ID (cf above), `nature` for the POS-tag, `word` for the headword.
 
- Below are two examples: [fuling](https://svenska.se/so/?sok=fuling&pz=1) has one main entry and two sub-entry, one of them has an example sentence. [svindel](https://svenska.se/so/?sok=svindel&pz=1) has two main entries and one of those has a sub-entry. There is an example for that main sense, and another example for its sub-sense. 
+ Below is an example: [svindel](https://svenska.se/so/?sok=svindel&pz=1). We explain the entry step by step, and in [the key section](#key) we provide a guide. In [remarks](#remarks) we provide a PoS-to-UD conversion scheme.
 
+ The entry for `svindel` contains: 
+ - the unique ID: 145357
+ - the word: svindel
+ - the part-of-speech (nature): "subst"
+ - internal information for SO collaborators
+ - the list of main senses. Each sense has its own dictionary, with:
+    - possibly sub-senses,
+    - a gloss,
+    - possibly a sub gloss,
+    - a list of example sentences (possibly none, possibly several),
+    - a year  --- always a string and not an integer or a date, as sometimes the field contains a sentence (e.g.: "belagt sedan 2006")
+ 
+A picture is worth a thousand words:
 
 ```python
-{'definitions': [{'examples': [],
-                  'gloss': 'person (eller djur) med föga tilltalande yttre',
-                  'sub_entries': [{'examples': [],
-                                   'gloss': 'ofta bildligt om lömsk el. elak '
-                                            'person',
-                                   'sub_entries': [],
-                                   'sub_gloss': '',
-                                   'year': '1831'},
-                                  {'examples': ['din lille fuling, vad har du '
-                                                'nu gjort?'],
-                                   'gloss': 'äv. skämts. el. smeksamt',
-                                   'sub_entries': [],
-                                   'sub_gloss': '',
-                                   'year': '1831'}],
-                  'sub_gloss': '',
-                  'year': '1831'}],
- 'key': 53284,
- 'nature': 'subst.',
- 'word': 'fuling'}
+[
+     {
+        "key": 145357,
+        "word": "svindel",
+        "nature": "subst.",
+        "internal_SO_info": 1,
+        "definitions": [
+            {
+                "gloss": "+yrsel som uppkommer vid vistelse på höga höjder",
+                "sub_gloss": "",
+                "sub_entries": [
+                    {
+                        "gloss": "äv. om likn. känsla som uppstått av annan orsak",
+                        "sub_gloss": "",
+                        "sub_entries": [],
+                        "examples": [
+                            "han kände svindel vid tanken på hur mycket pengar han hade ansvar för"
+                        ],
+                        "year": "1668"
+                    }
+                ],
+                "examples": [
+                    "hon fick svindel uppe i tornet"
+                ],
+                "year": "1668"
+            },
+            {
+                "gloss": "(ekonomiskt) bedrägeri",
+                "sub_gloss": "i större skala",
+                "sub_entries": [],
+                "examples": [],
+                "year": "1879"
+            }
+        ]
+    },
+    {
+        # entry for some other word
+    },
+    {
+        # entry for some other word
+    },
 
-
-{'definitions': [{'examples': ['hon fick svindel uppe i tornet'],
-                  'gloss': '+yrsel som uppkommer vid vistelse på höga höjder',
-                  'sub_entries': [{'examples': ['han kände svindel vid tanken '
-                                                'på hur mycket pengar han hade '
-                                                'ansvar för'],
-                                   'gloss': 'äv. om likn. känsla som uppstått '
-                                            'av annan orsak',
-                                   'sub_entries': [],
-                                   'sub_gloss': '',
-                                   'year': '1668'}],
-                  'sub_gloss': '',
-                  'year': '1668'},
-                 {'examples': [],
-                  'gloss': '(ekonomiskt) bedrägeri',
-                  'sub_entries': [],
-                  'sub_gloss': 'i större skala',
-                  'year': '1879'}],
- 'key': 145357,
- 'nature': 'subst.',
- 'word': 'svindel'}
+]
 
 ```
 ## Key
@@ -67,7 +84,7 @@ Sense definition (`gloss`), clarification of that sense definition (`sub_gloss`)
 Time data available.
 
 **NB**: 
-1. This is an str
+1. This is a str
 2. When the year ends in `00`, such as `1800`, this means "19th-Century" or "the years that started in 1800"
 
 ###  `examples` (examples)
@@ -76,7 +93,7 @@ A list of sentences/text using the word. This list can be empty, or contain one 
 
 ## Bib
 
-Allén, Sture (1981): The lemma-lexeme model of the Swedish Lexical Database. In: Ralph, Bo (ed.). Modersmålet i fäderneslandet. Ett urval uppsatser under fyrtio år av Sture Allén. Meijerbergs arkiv för svensk ordforskning 25. Göteborg 1999. (https://gupea.ub.gu.se/bitstream/handle/2077/53653/gupea_2077_53653_1.pdf?sequence=1&isAllowed=y)
+Allén, Sture (1981): The lemma-lexeme model of the Swedish Lexical Database. In: Ralph, Bo (ed.). Modersmålet i fäderneslandet. Ett urval uppsatser under fyrtio år av Sture Allén. Meijerbergs arkiv för svensk ordforskning 25. Göteborg 1999. https://gupea.ub.gu.se/bitstream/handle/2077/53653/gupea_2077_53653_1.pdf?sequence=1&isAllowed=y
 
 ## Remarks
 
