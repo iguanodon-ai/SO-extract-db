@@ -90,6 +90,18 @@ Time data available.
 ###  `examples` (examples)
 A list of sentences/text using the word. This list can be empty, or contain one or more entries.
 
+## Stats
+
+- Number of words:  68671
+- Number of senses:  87600
+- Number of sub-senses:  18033
+- Number of examples of main senses:  83974
+- Number of examples of subsenses:  19610
+- Number of examples (total):  103584
+- Average number of senses per word:  1.276
+- Average number of sub-senses per sense:  0.206
+- Average number of examples per sense:  0.959
+- Average number of examples per sub-sense:  1.087
 
 ## Bib
 
