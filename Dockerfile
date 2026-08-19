@@ -1,18 +1,20 @@
-FROM node:20
+FROM python:3.12-slim
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 ENV DB_HOST=localhost
 ENV DB_PORT=3306
 ENV DB_USER=root
 ENV DB_PASSWORD=secret
 ENV DB_NAME=dictionary
+ENV OUTPUT=/app/out/entries.json
 
 WORKDIR /app
-COPY package.json /app/
-COPY yarn.lock /app/
-COPY tsconfig.json /app/
-COPY src/* /app/
+RUN mkdir -p /app/out
+COPY pyproject.toml uv.lock ./
 
-RUN yarn install && \
-  yarn tsc
+RUN uv sync --frozen --no-dev
 
-CMD ["node", "dist/index.js"]
+COPY src/ /app/src/
+
+CMD ["uv", "run", "python", "src/extract.py"]

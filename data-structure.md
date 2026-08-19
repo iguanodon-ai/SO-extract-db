@@ -105,21 +105,21 @@ A list of sentences/text using the word. This list can be empty, or contain one 
 
 ## SQL Query explained
 
-We use Javascript to connect and query the DB. See [here](https://github.com/iguanodon-ai/SO-extract-db/blob/main/src/index.ts#L21).
+We use Python to connect and query the DB. See [here](https://github.com/iguanodon-ai/SO-extract-db/blob/main/src/extract.py).
 
-1. `selectFrom("superlemma as sl")`: Begin constructing a query that selects data from the "superlemma" table, and alias it as "sl" for use in the rest of the query
-2. `innerJoin("lemma as l", "l.s_nr", "sl.s_nr")`: Perform an inner join with the "lemma" table (aliased as "l") on the condition that the "s_nr" column in the "lemma" table matches the "s_nr" column in the "superlemma" table
-3. `innerJoin("betydelser as b", "b.s_nr", "sl.s_nr")`: Further perform an inner join with the "betydelser" table (aliased as "b") on the condition that the "s_nr" column in the "betydelser" table matches the "s_nr" column in the "superlemma" table
-4. `innerJoin("etymologier as e", "e.x_nr", "b.x_nr")`: Continue joining with the "etymologier" table (aliased as "e") on the condition that the "x_nr" column in the "etymologier" table matches the "x_nr" column in the "betydelser" table
-5. `leftJoin("syntex as sy", "b.kc_nr", "sy.kc_nr")`: Perform a left join with the "syntex" table (aliased as "sy") on the condition that the "kc_nr" column in the "betydelser" table matches the "kc_nr" column in the "syntex" table A left join includes all records from the left table ("betydelser") and matched records from the right table ("syntex"), with NULL in the result for unmatched records from the right table
-6. `where("l.wtype", "=", "lemma")`: Filter the results where the "wtype" column in the "lemma" table equals the string "lemma"
-7. `groupBy("b.kc_nr")`: Group the results by the "kc_nr" column in the "betydelser" table
-8. `orderBy(["sl.s_nr asc", "b.x_nr asc", "b.kcorder asc"])`: Sort the results first by the "s_nr" column in the "superlemma" table in ascending order, then by the "x_nr" column in the "betydelser" table in ascending order, and finally by the "kcorder" column in the "betydelser" table in ascending order
-9. `select([...])`: Specify the list of columns to be retrieved from the various tables involved in the joins. The columns are selected from the aliased tables and include columns like "sl.s_nr", "sl.ordklass", "l.wtype", "b.def", etc
-10. `sql<string>GROUP_CONCAT(sy.sx_text SEPARATOR ';;').as("examples")`: Use a SQL function GROUP_CONCAT to concatenate all "sx_text" values from the "syntex" table separated by ';;' and alias this concatenated string as "examples".
-11. `execute()`: Execute the constructed SQL query
+1. `FROM superlemma AS sl`: Begin constructing a query that selects data from the "superlemma" table, and alias it as "sl" for use in the rest of the query
+2. `INNER JOIN lemma AS l ON l.s_nr = sl.s_nr`: Perform an inner join with the "lemma" table (aliased as "l") on the condition that the "s_nr" column in the "lemma" table matches the "s_nr" column in the "superlemma" table
+3. `INNER JOIN betydelser AS b ON b.s_nr = sl.s_nr`: Further perform an inner join with the "betydelser" table (aliased as "b") on the condition that the "s_nr" column in the "betydelser" table matches the "s_nr" column in the "superlemma" table
+4. `INNER JOIN etymologier AS e ON e.x_nr = b.x_nr`: Continue joining with the "etymologier" table (aliased as "e") on the condition that the "x_nr" column in the "etymologier" table matches the "x_nr" column in the "betydelser" table
+5. `LEFT JOIN syntex AS sy ON b.kc_nr = sy.kc_nr`: Perform a left join with the "syntex" table (aliased as "sy") on the condition that the "kc_nr" column in the "betydelser" table matches the "kc_nr" column in the "syntex" table. A left join includes all records from the left table ("betydelser") and matched records from the right table ("syntex"), with NULL in the result for unmatched records from the right table
+6. `WHERE l.wtype = 'lemma'`: Filter the results where the "wtype" column in the "lemma" table equals the string "lemma"
+7. `GROUP BY b.kc_nr`: Group the results by the "kc_nr" column in the "betydelser" table
+8. `ORDER BY sl.s_nr ASC, b.x_nr ASC, b.kcorder ASC`: Sort the results first by the "s_nr" column in the "superlemma" table in ascending order, then by the "x_nr" column in the "betydelser" table in ascending order, and finally by the "kcorder" column in the "betydelser" table in ascending order
+9. `SELECT ...`: Specify the list of columns to be retrieved from the various tables involved in the joins. The columns are selected from the aliased tables and include columns like "sl.s_nr", "sl.ordklass", "l.wtype", "b.def", etc
+10. `GROUP_CONCAT(sy.sx_text SEPARATOR ';;') AS examples`: Use a SQL function GROUP_CONCAT to concatenate all "sx_text" values from the "syntex" table separated by ';;' and alias this concatenated string as "examples".
+11. `cursor.execute(...)`: Execute the constructed SQL query
 
-The function 'parseEntries' waits for the database operation to complete using await and then stores the result in the variable data. The data variable is expected to contain the fetched rows from the database that match the query criteria, with the rows formatted according to the specified select clause.
+The function `parse_entries` takes the fetched rows and reshapes them into nested dictionary entries formatted according to the specified select clause.
 
 ## Bib
 
