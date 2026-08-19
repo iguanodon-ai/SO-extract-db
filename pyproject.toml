@@ -1,0 +1,14 @@
+[project]
+name = "so-extract-db"
+version = "1.0.0"
+description = "Extract the SO2021 dictionary from a MariaDB/MySQL database into JSON"
+readme = "readme.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pymysql>=1.1.0",
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.66.0",
+]
+
+[tool.uv]
+package = false
